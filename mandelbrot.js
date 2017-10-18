@@ -33,9 +33,7 @@ function handle(e) {
   }
 }
 
-// function randomInteger(min, max) {
-//     return (Math.random() * (min - max) + max).toFixed(2)
-// }
+
 
 window.onload = function() {
     canvas = document.getElementById("surface");
@@ -107,7 +105,6 @@ function StartDrawMandelbrot(){
         draws = true;
         goDraw.disabled = draws;
     }
-
 }
 
 function DrawMandelbrotSet(x,y,alfa,beta,figScale){
@@ -151,13 +148,16 @@ function DrawMandelbrotSet(x,y,alfa,beta,figScale){
     this.x = x_new;
     this.y = y_new;
 
-    // console.log(i);
     i++;
     if ((i==pointSize)&&(pointSize!=-1)){
         clearInterval(myTimer);
     }
 }
 
+
+// function randomInteger(min, max) {
+//     return (Math.random() * (min - max) + max).toFixed(2)
+// }
 
 // context.beginPath();
 // context.fillStyle = 'blue';
