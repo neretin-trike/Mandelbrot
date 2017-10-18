@@ -13,8 +13,8 @@
     <canvas id="surface"></canvas>
     <nav id="menu">
 		<ul>
-			<li><button onclick="StartDrawMandelbrot()">Множество Мандельброта</button></li>
-			<li><button onclick="clearInterval(myTimer)">Остановить рисование</button></li>
+			<li><button id="goDraw" onclick="StartDrawMandelbrot()">Множество Мандельброта</button></li>
+			<li><button onclick="StopDrawMandelbrot()">Остановить рисование</button></li>
 			<li><button onclick="CanvasClear()">Очистить график</button></li>
 		</ul>
 		<ul>

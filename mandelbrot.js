@@ -1,15 +1,18 @@
 var x = 0,
     y = 0,
-    alfa = 0.3,
+    canvas = null,
+    context = null,
+    myTimer = null,
+    yAxisPos = 1.35,
+    menuDisplay = true,
+    draws = false;
+
+var alfa = 0.3,
     beta = 0.44083
     figScale = 700,
     pointSize = 2500,
     hord = false,
-    mainColors = false,
-    canvas = null,
-    context = null,
-    myTimer = null,
-    yAxisPos = 1.35;
+    mainColors = false;
 
 var mainColor = ["Aqua","Black","Blue","Fuchsia ", 
                 "Gray","Green","Lime","Maroon",
@@ -17,7 +20,6 @@ var mainColor = ["Aqua","Black","Blue","Fuchsia ",
                 "Silver","Teal","White","Yellow"]; 
 
 window.onkeydown = handle;
-var menuDisplay = true;
 function handle(e) {
   if (e.keyCode == 192){
     menuDisplay= !menuDisplay;
@@ -86,14 +88,26 @@ function DrawAxis(){
     context.stroke();
 }
 
+function StopDrawMandelbrot(){
+    draws = false;
+    goDraw.disabled = draws;
+    clearInterval(myTimer);
+}
+
 var i=0;
 function StartDrawMandelbrot(){
-    i = 0;
-    myTimer = setInterval(
-                function (){
-                    DrawMandelbrotSet(x,y,alfa,beta,figScale)
-                }
-                ,1);
+    if (draws==false){
+        i = 0;
+        myTimer = setInterval(
+                    function (){
+                        DrawMandelbrotSet(x,y,alfa,beta,figScale)
+                    }
+                    ,1);
+
+        draws = true;
+        goDraw.disabled = draws;
+    }
+
 }
 
 function DrawMandelbrotSet(x,y,alfa,beta,figScale){
