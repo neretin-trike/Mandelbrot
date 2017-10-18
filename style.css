@@ -1,21 +1,94 @@
 body{
 	font-family: "Roboto", sans-serif;
-	color: #F0F0F0;
-
+	color: rgba(255,255,255,0.75);
+	font-size: 12px;
     margin: 0;
     padding: 0;
     background: black;
     overflow: hidden;
 }
 
+.menu{
+	width: 50%;
+}
+
+
+
 ul{
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-	position: absolute;
+	position: relative;
+	bottom: 565px;
+	float: left;
+	width: 180px;
+}
+
+ul li{
+	text-align: left;
+	width: 150px;
+	margin-bottom: 7px;
+}
+
+button{
+	width: 150px;
+	height: 55px;
+	background-color: transparent;
+	line-height: 20px;
+	color: rgba(255,255,255,0.75);
+	outline: none;
+	
+	border-radius: 16px;
+	border: 1px solid #E91E63;
+}
+
+button:hover{
+	color: rgba(255,255,255,1);
+}
+
+button:active{
+	background-color: #E91E63;
+	color: rgba(255,255,255,1);
+}
+
+input[type="text"]{
+    color: rgba(255,255,255,0.75);
+    background-color: transparent;
+    padding: 9px;
+    margin-top: 4px;
+    width: 130px;
+
+    outline: none;
+    border-radius: 16px;
+    border: 1px solid #E91E63;
+}
+
+input[type="text"]:focus{
+	background-color: #E91E63;
+	color: rgba(255,255,255,1);
+}
+
+.custom-check{
+	display: block;
+
+	background-color: transparent;
+    margin-top: 4px;
+	width: 16px;
+	height: 16px;
+	border-radius: 45px;
+	border: 2px solid #E91E63;
+}
+
+input[type="checkbox"]{
+	display: none;
+}
+
+input[type="checkbox"]:checked + label {
+	background-color: #E91E63;
 }
 
 canvas{
     background: black;
     width: 100%;
 }
+

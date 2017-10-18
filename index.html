@@ -10,16 +10,30 @@
     <title>Множество Мандельброта</title>
 </head>
 <body>
-	<ul>
-		<li><button onclick="StartDrawMandelbrot()">Множество Мандельброта</button></li>
-		<li><button onclick="clearInterval(myTimer)">Остановить рисование</button></li>
-		<li><button onclick="CanvasClear()">Очистить график</button></li>
-		<li><caption>Alfa<input type="text" value="0.3" id="alfaInput"></caption></li>
-		<li><caption>Beta<input type="text" value="0.44083" id="betaInput"></caption></li>
-		<li><caption>Масштаб<input type="text" value="750" id="scaleInput"></caption></li>
-		<li><caption>Количество точек<input type="text" value="2500" id="pointSizeInput"></caption></li>
-		<li><caption>Хорды<input type="checkbox" checked id="hordInput"></caption></li>
-	</ul>
     <canvas id="surface"></canvas>
+    <nav class="menu">
+		<ul>
+			<li><button onclick="StartDrawMandelbrot()">Множество Мандельброта</button></li>
+			<li><button onclick="clearInterval(myTimer)">Остановить рисование</button></li>
+			<li><button onclick="CanvasClear()">Очистить график</button></li>
+		</ul>
+		<ul>
+			<li>Alfa<input type="text" value="0.3" id="alfaInput"></li>
+			<li>Beta<input type="text" value="0.44083" id="betaInput"></li>
+			<li>Масштаб<input type="text" value="750" id="scaleInput"></li>
+		</ul>
+		<ul>
+			<li>Количество точек<input type="text" value="2500" id="pointSizeInput"></li>
+			<li>
+			Хорды<input type="checkbox" checked id="hordInput">
+				 <label  class="custom-check" for="hordInput"></label>
+			</li>
+			<li>
+			Цвета<input type="checkbox" checked id="colorInput">
+				 <label  class="custom-check" for="colorInput"></label>
+			</li>
+		</ul>
+	</nav>
+
 </body>
 </html>
