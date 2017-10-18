@@ -1,32 +1,39 @@
+var x = 0,
+    y = 0,
+    alfa = 0.3,
+    beta = 0.44083;
+        
 window.onload = function() {
     var canvas = document.getElementById("surface");
     var context = canvas.getContext("2d");
+
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    context.lineWidth = 2;
-
-    var canWidth = canvas.getAttribute('width'),
-        canHeight = canvas.getAttribute('height'),
-        figRatio = canHeight/canWidth,
+    var figRatio = canvas.width/canvas.height,
         figScale = 750;
 
+    context.lineWidth = 2;
+
     context.strokeStyle = "rgba(200, 230, 201, 0.15)";
-    context.moveTo(canWidth/2,0);
-    context.lineTo(canWidth/2,canHeight);
+    context.moveTo(canvas.width/2,0);
+    context.lineTo(canvas.width/2,canvas.height);
     context.stroke();
 
     context.beginPath();
 
     context.strokeStyle = "rgba(200, 230, 201, 0.15)";
-    context.moveTo(0,canHeight/1.2);
-    context.lineTo(canWidth,canHeight/1.2);
+    context.moveTo(0,canvas.height/1.2);
+    context.lineTo(canvas.width,canvas.height/1.2);
     context.stroke();
 
-    var x = 0,
-        y = 0,
-        alfa = 0.3,
-        beta = 0.44083;
+
+    DrawMandelbrotSet(x,y,alfa,beta,context,canvas,figScale);    
+
+};
+
+
+function DrawMandelbrotSet(x,y,alfa,beta,context,canvas,figScale){
 
     for (var i=0; i<580; i++){
         x_new = x*x-y*y+alfa;
@@ -36,7 +43,7 @@ window.onload = function() {
         context.shadowBlur = 10;
         context.beginPath();
         context.fillStyle = '#E91E63';
-        context.arc(x_new*figScale+canWidth/2,-y_new*figScale+canHeight/1.2, 2, 0, Math.PI*2, true);
+        context.arc(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/1.2, 2, 0, Math.PI*2, true);
         context.fill();
 
 
@@ -47,17 +54,14 @@ window.onload = function() {
         context.beginPath();
         context.lineWidth = 1;
         context.strokeStyle =  "rgba(30, 147, 236, 0.15)";
-        context.moveTo(x*figScale+canWidth/2,-y*figScale+canHeight/1.2);
-        context.lineTo(x_new*figScale+canWidth/2,-y_new*figScale+canHeight/1.2);
+        context.moveTo(x*figScale+canvas.width/2,-y*figScale+canvas.height/1.2);
+        context.lineTo(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/1.2);
         context.stroke();
 
         x = x_new;
         y = y_new;
-
-        
     }
-
-};
+}
 
     // context.beginPath();
     // context.fillStyle = 'blue';
