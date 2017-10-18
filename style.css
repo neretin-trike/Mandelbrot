@@ -8,18 +8,20 @@ body{
     overflow: hidden;
 }
 
-.menu{
+#menu{
 	width: 50%;
+	position: absolute;
+    bottom: 12px;
+    left: 12px;
+    display: block;
 }
-
 
 
 ul{
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-	position: relative;
-	bottom: 565px;
+
 	float: left;
 	width: 180px;
 }
@@ -92,3 +94,16 @@ canvas{
     width: 100%;
 }
 
+.hint{
+	color: rgba(255,255,255,1);
+	opacity: 0.25;
+}
+
+.hint kbr{
+	color: rgba(255,255,255,1);
+	display: inline-block;
+	border: 2px solid #E91E63;
+	/*background-color: #E91E63;*/
+	padding: 7px;
+	line-height: 0px;
+}

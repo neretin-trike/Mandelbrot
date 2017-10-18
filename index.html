@@ -11,7 +11,7 @@
 </head>
 <body>
     <canvas id="surface"></canvas>
-    <nav class="menu">
+    <nav id="menu">
 		<ul>
 			<li><button onclick="StartDrawMandelbrot()">Множество Мандельброта</button></li>
 			<li><button onclick="clearInterval(myTimer)">Остановить рисование</button></li>
@@ -20,7 +20,7 @@
 		<ul>
 			<li>Alfa<input type="text" value="0.3" id="alfaInput"></li>
 			<li>Beta<input type="text" value="0.44083" id="betaInput"></li>
-			<li>Масштаб<input type="text" value="750" id="scaleInput"></li>
+			<li>Масштаб<input type="text" value="700" id="scaleInput"></li>
 		</ul>
 		<ul>
 			<li>Количество точек<input type="text" value="2500" id="pointSizeInput"></li>
@@ -32,8 +32,8 @@
 			Цвета<input type="checkbox" checked id="colorInput">
 				 <label  class="custom-check" for="colorInput"></label>
 			</li>
+			<li class="hint">Чтобы скрыть меню <kbr>~</kbr> </li>
 		</ul>
 	</nav>
-
 </body>
 </html>

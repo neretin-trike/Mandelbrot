@@ -2,12 +2,29 @@ var x = 0,
     y = 0,
     alfa = 0.3,
     beta = 0.44083
-    figScale = 750,
+    figScale = 700,
     hord = false,
     pointSize = 2500,
     canvas = null,
     context = null,
-    myTimer = null;
+    myTimer = null,
+    yAxisPos = 1.35;
+
+
+window.onkeydown = handle;
+var menuDisplay = true;
+function handle(e) {
+  if (e.keyCode == 192){
+    menuDisplay= !menuDisplay;
+
+    if (menuDisplay){
+        menu.style.display = "none"; 
+    }
+    else{
+        menu.style.display = "block"; 
+    }
+  }
+}
 
 // function randomInteger(min, max) {
 //     return (Math.random() * (min - max) + max).toFixed(2)
@@ -59,16 +76,13 @@ function DrawAxis(){
 
     context.beginPath();
     context.strokeStyle = "rgba(200, 230, 201, 0.15)";
-    context.moveTo(0,canvas.height/1.2);
-    context.lineTo(canvas.width,canvas.height/1.2);
+    context.moveTo(0,canvas.height/yAxisPos);
+    context.lineTo(canvas.width,canvas.height/yAxisPos);
     context.stroke();
 }
 
 var i=0;
 function StartDrawMandelbrot(){
-
-
-
     i = 0;
     myTimer = setInterval(
                 function (){
@@ -91,7 +105,7 @@ function DrawMandelbrotSet(x,y,alfa,beta,figScale){
     context.shadowBlur = 5;
     context.beginPath();
     context.fillStyle = '#E91E63';
-    context.arc(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/1.2, 2, 0, Math.PI*2, true);
+    context.arc(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/yAxisPos, 2, 0, Math.PI*2, true);
     context.fill();
 
     // console.log("После "+ x_new + " " + y_new);
@@ -102,8 +116,8 @@ function DrawMandelbrotSet(x,y,alfa,beta,figScale){
         context.beginPath();
         context.lineWidth = 1;
         context.strokeStyle =  "rgba(30, 147, 236, 0.15)";
-        context.moveTo(x*figScale+canvas.width/2,-y*figScale+canvas.height/1.2);
-        context.lineTo(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/1.2);
+        context.moveTo(x*figScale+canvas.width/2,-y*figScale+canvas.height/yAxisPos);
+        context.lineTo(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/yAxisPos);
         context.stroke();
     }
 
