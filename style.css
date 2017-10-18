@@ -1,11 +1,19 @@
+*{
+	transition: all 0.15s ease-in;
+}
+
 body{
 	font-family: "Roboto", sans-serif;
 	color: rgba(255,255,255,0.75);
 	font-size: 12px;
     margin: 0;
     padding: 0;
-    background: black;
     overflow: hidden;
+}
+
+canvas{
+    background: #11121a;
+    width: 100%;
 }
 
 #menu{
@@ -89,10 +97,6 @@ input[type="checkbox"]:checked + label {
 	background-color: #E91E63;
 }
 
-canvas{
-    background: black;
-    width: 100%;
-}
 
 .hint{
 	color: rgba(255,255,255,1);

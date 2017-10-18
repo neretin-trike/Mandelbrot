@@ -3,13 +3,18 @@ var x = 0,
     alfa = 0.3,
     beta = 0.44083
     figScale = 700,
-    hord = false,
     pointSize = 2500,
+    hord = false,
+    mainColors = false,
     canvas = null,
     context = null,
     myTimer = null,
     yAxisPos = 1.35;
 
+var mainColor = ["Aqua","Black","Blue","Fuchsia ", 
+                "Gray","Green","Lime","Maroon",
+                "Navy","Olive","Purple","Red",
+                "Silver","Teal","White","Yellow"]; 
 
 window.onkeydown = handle;
 var menuDisplay = true;
@@ -97,14 +102,22 @@ function DrawMandelbrotSet(x,y,alfa,beta,figScale){
     figScale = scaleInput.value;
     pointSize = pointSizeInput.value;
     hord = hordInput.checked;
+    mainColors = colorInput.checked;
 
     x_new = x*x-y*y+alfa;
     y_new = 2*x*y+beta;
 
-    context.shadowColor = 'red';
-    context.shadowBlur = 5;
+
     context.beginPath();
-    context.fillStyle = '#E91E63';
+    if(mainColors){
+        context.shadowBlur = 0;
+        context.fillStyle = mainColor[i%15];
+    }
+    else{
+        context.shadowColor = 'red';
+        context.shadowBlur = 5;
+        context.fillStyle = '#E91E63';
+    }
     context.arc(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/yAxisPos, 2, 0, Math.PI*2, true);
     context.fill();
 
@@ -115,7 +128,7 @@ function DrawMandelbrotSet(x,y,alfa,beta,figScale){
         context.shadowBlur = 1;
         context.beginPath();
         context.lineWidth = 1;
-        context.strokeStyle =  "rgba(30, 147, 236, 0.15)";
+        context.strokeStyle =  "rgba(91, 192, 190, 0.15)";
         context.moveTo(x*figScale+canvas.width/2,-y*figScale+canvas.height/yAxisPos);
         context.lineTo(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/yAxisPos);
         context.stroke();
