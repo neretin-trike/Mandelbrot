@@ -4,11 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="mandelbrot.js"></script>
     <title>Множество Мандельброта</title>
 </head>
 <body>
+	<ul>
+		<li><button onclick="StartDrawMandelbrot()">Множество Мандельброта</button></li>
+		<li><button onclick="clearInterval(myTimer)">Остановить рисование</button></li>
+		<li><button onclick="CanvasClear()">Очистить график</button></li>
+		<li><caption>Alfa<input type="text" value="0.3" id="alfaInput"></caption></li>
+		<li><caption>Beta<input type="text" value="0.44083" id="betaInput"></caption></li>
+		<li><caption>Масштаб<input type="text" value="750" id="scaleInput"></caption></li>
+		<li><caption>Количество точек<input type="text" value="2500" id="pointSizeInput"></caption></li>
+		<li><caption>Хорды<input type="checkbox" checked id="hordInput"></caption></li>
+	</ul>
     <canvas id="surface"></canvas>
 </body>
 </html>

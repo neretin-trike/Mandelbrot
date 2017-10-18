@@ -2,10 +2,12 @@ var x = 0,
     y = 0,
     alfa = 0.3,
     beta = 0.44083
+    figScale = 750,
+    hord = false,
+    pointSize = 2500,
     canvas = null,
     context = null,
     myTimer = null,
-    figScale = 750;
 
 window.onload = function() {
     canvas = document.getElementById("surface");
@@ -17,7 +19,7 @@ window.onload = function() {
     var figRatio = canvas.width/canvas.height;
 
     CanvasClear();
-    StartDrawMandelbrot();
+    // StartDrawMandelbrot();
 };
 
 function CanvasClear(){
@@ -54,20 +56,25 @@ function StartDrawMandelbrot(){
 }
 
 function DrawMandelbrotSet(x,y,alfa,beta,figScale){
+    alfa = parseFloat(alfaInput.value);
+    beta = parseFloat(betaInput.value);
+    figScale = parseInt(scaleInput.value);
+    pointSize = pointSizeInput.value;
+    hord = hordInput.checked;
 
-    // for (var i=0; i<580; i++){
-        x_new = x*x-y*y+alfa;
-        y_new = 2*x*y+beta;
+    x_new = x*x-y*y+alfa;
+    y_new = 2*x*y+beta;
 
-        context.shadowColor = 'red';
-        context.shadowBlur = 5;
-        context.beginPath();
-        context.fillStyle = '#E91E63';
-        context.arc(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/1.2, 2, 0, Math.PI*2, true);
-        context.fill();
+    context.shadowColor = 'red';
+    context.shadowBlur = 5;
+    context.beginPath();
+    context.fillStyle = '#E91E63';
+    context.arc(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/1.2, 2, 0, Math.PI*2, true);
+    context.fill();
 
-        // console.log("После "+ x_new + " " + y_new);
+    // console.log("После "+ x_new + " " + y_new);
 
+    if (hord){
         context.shadowColor = 'blue';
         context.shadowBlur = 1;
         context.beginPath();
@@ -76,16 +83,17 @@ function DrawMandelbrotSet(x,y,alfa,beta,figScale){
         context.moveTo(x*figScale+canvas.width/2,-y*figScale+canvas.height/1.2);
         context.lineTo(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/1.2);
         context.stroke();
+    }
 
-        this.x = x_new;
-        this.y = y_new;
 
-        // console.log(i);
-        i++;
-        if ( i==2500){
-            clearInterval(myTimer);
-        }
-    // }
+    this.x = x_new;
+    this.y = y_new;
+
+    // console.log(i);
+    i++;
+    if ( i==pointSize){
+        clearInterval(myTimer);
+    }
 }
 
     // context.beginPath();
