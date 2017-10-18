@@ -1,13 +1,15 @@
 window.onload = function() {
     var canvas = document.getElementById("surface");
     var context = canvas.getContext("2d");
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
 
     context.lineWidth = 2;
 
     var canWidth = canvas.getAttribute('width'),
         canHeight = canvas.getAttribute('height'),
         figRatio = canHeight/canWidth,
-        figScale = 950;
+        figScale = 750;
 
     context.strokeStyle = "rgba(200, 230, 201, 0.15)";
     context.moveTo(canWidth/2,0);
@@ -20,22 +22,6 @@ window.onload = function() {
     context.moveTo(0,canHeight/1.2);
     context.lineTo(canWidth,canHeight/1.2);
     context.stroke();
-
-    // context.beginPath();
-    // context.fillStyle = 'blue';
-    // context.arc(500, 400, 3, 0, Math.PI*2, true);
-    // context.fill();
-
-    // context.beginPath();
-    // context.strokeStyle = "yellow";
-    // context.moveTo(500,400);
-    // context.lineTo(400,300);
-    // context.stroke();
-
-    // context.beginPath();
-    // context.fillStyle = 'red';
-    // context.arc(400, 300, 3, 0, Math.PI*2, true);
-    // context.fill();
 
     var x = 0,
         y = 0,
@@ -72,3 +58,19 @@ window.onload = function() {
     }
 
 };
+
+    // context.beginPath();
+    // context.fillStyle = 'blue';
+    // context.arc(500, 400, 3, 0, Math.PI*2, true);
+    // context.fill();
+
+    // context.beginPath();
+    // context.strokeStyle = "yellow";
+    // context.moveTo(500,400);
+    // context.lineTo(400,300);
+    // context.stroke();
+
+    // context.beginPath();
+    // context.fillStyle = 'red';
+    // context.arc(400, 300, 3, 0, Math.PI*2, true);
+    // context.fill();
