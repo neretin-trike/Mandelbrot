@@ -33,8 +33,6 @@ function handle(e) {
   }
 }
 
-
-
 window.onload = function() {
     canvas = document.getElementById("surface");
     context = canvas.getContext("2d");
@@ -42,18 +40,7 @@ window.onload = function() {
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    var figRatio = canvas.width/canvas.height;
-
     CanvasClear();
-    // StartDrawMandelbrot();
-
-    // for (var i = 0; i<250; i++){
-    //     context.beginPath();
-    //     console.log(randomInteger(0.05,0.5));
-    //     context.fillStyle = 'rgba(255,255,255,'+randomInteger(0.05,0.75)+')';
-    //     context.arc(canvas.width-randomInteger(0,canvas.width),canvas.height-randomInteger(0,canvas.height), randomInteger(1.0,1.5), 0, Math.PI*2, true);
-    //     context.fill(); 
-    // }
 };
 
 window.onresize = function() {
@@ -61,7 +48,6 @@ window.onresize = function() {
     canvas.height = window.innerHeight;
     CanvasClear();
 }
-
 
 function CanvasClear(){
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -108,6 +94,7 @@ function StartDrawMandelbrot(){
 }
 
 function DrawMandelbrotSet(x,y,alfa,beta,figScale){
+
     alfa = parseFloat(alfaInput.value);
     beta = parseFloat(betaInput.value);
     figScale = scaleInput.value;
@@ -118,11 +105,10 @@ function DrawMandelbrotSet(x,y,alfa,beta,figScale){
     x_new = x*x-y*y+alfa;
     y_new = 2*x*y+beta;
 
-
     context.beginPath();
     if(mainColors){
         context.shadowBlur = 0;
-        context.fillStyle = mainColor[i%15];
+        context.fillStyle = mainColor[i%16];
     }
     else{
         context.shadowColor = 'red';
@@ -137,6 +123,7 @@ function DrawMandelbrotSet(x,y,alfa,beta,figScale){
     if (hord){
         context.shadowColor = 'blue';
         context.shadowBlur = 1;
+
         context.beginPath();
         context.lineWidth = 1;
         context.strokeStyle =  "rgba(91, 192, 190, 0.15)";
@@ -153,6 +140,12 @@ function DrawMandelbrotSet(x,y,alfa,beta,figScale){
         clearInterval(myTimer);
     }
 }
+
+
+
+
+
+
 
 
 // function randomInteger(min, max) {
