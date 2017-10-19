@@ -49,6 +49,111 @@ window.onresize = function() {
     CanvasClear();
 }
 
+// The parametric function X(t).
+function X(t, A, B, C)
+{
+    return (A - B) * Math.cos(t) + C * Math.cos((A - B) / B * t);
+}
+
+// The parametric function Y(t).
+function Y(t, A, B, C)
+{
+    return (A - B) * Math.sin(t) - C * Math.sin((A - B) / B * t);
+}
+
+function GCD(a,b) {
+    a = Math.abs(a);
+    b = Math.abs(b);
+    if (b > a) {var temp = a; a = b; b = temp;}
+    while (true) {
+        if (b == 0) return a;
+        a %= b;
+        if (a == 0) return b;
+        b %= a;
+    }
+}
+
+var pointsX = [],
+    pointsY = [];
+
+function btnDraw_Click()
+{
+    A = parseFloat(alfaInput.value);
+    B = parseFloat(betaInput.value);
+    C = scaleInput.value;
+    iter = pointSizeInput.value;
+
+    pointsX.length = 0;
+    pointsY.length = 0;
+
+    wid = canvas.width;
+    hgt = canvas.height;
+
+    cx = wid / 2;
+    cy = hgt / 2;
+    t = 0;
+    dt = Math.PI / iter;
+
+    max_t = 2 * Math.PI * B / GCD(A,B);
+    x1 = cx + X(t, A, B, C);
+    y1 = cy + Y(t, A, B, C);
+
+    pointsX.push(x1);
+    pointsY.push(y1);
+
+    while (t <= max_t)
+    {
+        t += dt;
+        x1 = cx + X(t, A, B, C);
+        y1 = cy + Y(t, A, B, C);
+
+        pointsX.push(x1);
+        pointsY.push(y1);
+    }
+
+    StartDrawSpirograph();
+}
+
+var i=0;
+function StartDrawSpirograph (){
+    if (draws==false){
+        i = 0;
+
+
+        myTimer = setInterval(
+                    function (){DrawSpirograph()},1);
+
+        draws = true;
+        goDraw.disabled = draws;
+    }
+}
+
+function DrawSpirograph(){
+    x_new = pointsX[i];
+    y_new = pointsY[i];
+
+    console.log(x_new+ " "+y_new);
+
+    context.beginPath();
+    context.shadowColor = 'red';
+    context.shadowBlur = 5;
+    context.fillStyle = '#E91E63';
+    context.arc(x_new,y_new, 2, 0, Math.PI*2, true);
+    context.fill();
+
+    context.beginPath();
+    context.lineWidth = 1;
+    context.strokeStyle = "rgba(91, 192, 190, 0.15)";
+    context.moveTo(pointsX[i],pointsY[i]);
+    context.lineTo(pointsX[i+1],pointsY[i+1]);
+    context.stroke();
+
+    i++;
+    if (i==pointsX.length){
+        clearInterval(myTimer);
+    }
+}
+
 function CanvasClear(){
     context.clearRect(0, 0, canvas.width, canvas.height);
     DrawAxis();

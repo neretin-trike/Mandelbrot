@@ -13,17 +13,18 @@
     <canvas id="surface"></canvas>
     <nav id="menu">
 		<ul>
-			<li><button id="goDraw" onclick="StartDrawMandelbrot()">Множество Мандельброта</button></li>
+			<li><button id="goDraw" onclick="btnDraw_Click()">Множество Мандельброта</button></li>
+			<!-- <li><button id="goDraw" onclick="StartDrawMandelbrot()">Множество Мандельброта</button></li> -->
 			<li><button onclick="StopDrawMandelbrot()">Остановить рисование</button></li>
 			<li><button onclick="CanvasClear()">Очистить график</button></li>
 		</ul>
 		<ul>
-			<li>Alfa<input type="text" value="0.3" id="alfaInput"></li>
-			<li>Beta<input type="text" value="0.44083" id="betaInput"></li>
-			<li>Масштаб<input type="text" value="700" id="scaleInput"></li>
+			<li>Alfa<input type="text" value="150" id="alfaInput"></li>
+			<li>Beta<input type="text" value="26.25" id="betaInput"></li>
+			<li>Масштаб<input type="text" value="56.25" id="scaleInput"></li>
 		</ul>
 		<ul>
-			<li>Количество точек<input type="text" value="2500" id="pointSizeInput"></li>
+			<li>Количество точек<input type="text" value="100" id="pointSizeInput"></li>
 			<li>
 			Хорды<input type="checkbox" checked id="hordInput">
 				 <label  class="custom-check" for="hordInput"></label>
