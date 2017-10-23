@@ -81,63 +81,123 @@ function StopDrawMandelbrot(){
 var i=0;
 function StartDrawMandelbrot(){
     if (draws==false){
-        i = 0;
+        // i = 0;
         myTimer = setInterval(
                     function (){
                         DrawMandelbrotSet(x,y,alfa,beta,figScale)
                     }
-                    ,1);
+                    ,10);
 
         draws = true;
         goDraw.disabled = draws;
     }
 }
 
+var points=[];
+var t=1;
+var myTimer2 = null;
+
+function calcWaypoints(x0,y0,x1,y1){
+    var waypoints=[];
+    var dx=x1-x0;
+    var dy=y1-y0;
+    for(var j=0;j<500;j++){
+        var x=x0+dx*j/500;
+        var y=y0+dy*j/500;
+        waypoints.push({x:x,y:y});
+    }
+    return(waypoints);
+}
+
+function animate(){
+
+    try{
+        context.beginPath();
+        context.moveTo(points[t-1].x*figScale+canvas.width/2,-points[t-1].y*figScale+canvas.height/yAxisPos);
+        context.lineTo(points[t].x*figScale+canvas.width/2,-points[t].y*figScale+canvas.height/yAxisPos);
+        context.stroke();
+        t++;
+
+        StopDrawMandelbrot();
+    }
+    catch(err){
+        console.log("ошибочка");
+    }
+
+    if (t==points.length-1){
+        points=[];
+        t = 1;
+        myTimer2 = null;
+        
+        StartDrawMandelbrot();
+
+        // clearInterval(myTimer2);
+    }
+
+    // for(var t = 1; t<points.length-1;t++){
+    //     context.beginPath();
+    //     context.moveTo(points[t-1].x*figScale+canvas.width/2,-points[t-1].y*figScale+canvas.height/yAxisPos);
+    //     context.lineTo(points[t].x*figScale+canvas.width/2,-points[t].y*figScale+canvas.height/yAxisPos);
+    //     context.stroke();
+    // }
+}
+
+function StartDrawLine(){
+    myTimer2 = setInterval(
+        function (){animate()},5);
+}
+
 function DrawMandelbrotSet(x,y,alfa,beta,figScale){
 
-    alfa = parseFloat(alfaInput.value);
-    beta = parseFloat(betaInput.value);
-    figScale = scaleInput.value;
-    pointSize = pointSizeInput.value;
-    hord = hordInput.checked;
-    mainColors = colorInput.checked;
+    if ((i!=pointSize)||(pointSize==-1)){
 
-    x_new = x*x-y*y+alfa;
-    y_new = 2*x*y+beta;
+        alfa = parseFloat(alfaInput.value);
+        beta = parseFloat(betaInput.value);
+        figScale = scaleInput.value;
+        pointSize = pointSizeInput.value;
+        hord = hordInput.checked;
+        mainColors = colorInput.checked;
 
-    context.beginPath();
-    if(mainColors){
-        context.shadowBlur = 0;
-        context.fillStyle = mainColor[i%16];
-    }
-    else{
-        context.shadowColor = 'red';
-        context.shadowBlur = 5;
-        context.fillStyle = '#E91E63';
-    }
-    context.arc(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/yAxisPos, 2, 0, Math.PI*2, true);
-    context.fill();
-
-    // console.log("После "+ x_new + " " + y_new);
-
-    if (hord){
-        context.shadowColor = 'blue';
-        context.shadowBlur = 1;
+        x_new = x*x-y*y+alfa;
+        y_new = 2*x*y+beta;
 
         context.beginPath();
-        context.lineWidth = 1;
-        context.strokeStyle =  "rgba(91, 192, 190, 0.15)";
-        context.moveTo(x*figScale+canvas.width/2,-y*figScale+canvas.height/yAxisPos);
-        context.lineTo(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/yAxisPos);
-        context.stroke();
-    }
+        if(mainColors){
+            context.shadowBlur = 0;
+            context.fillStyle = mainColor[i%16];
+        }
+        else{
+            context.shadowColor = 'red';
+            context.shadowBlur = 5;
+            context.fillStyle = '#E91E63';
+        }
+        context.arc(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/yAxisPos, 2, 0, Math.PI*2, true);
+        context.fill();
 
-    this.x = x_new;
-    this.y = y_new;
+        // console.log("После "+ x_new + " " + y_new);
 
-    i++;
-    if ((i==pointSize)&&(pointSize!=-1)){
-        clearInterval(myTimer);
+        if (hord){
+            context.shadowColor = 'blue';
+            context.shadowBlur = 1;
+            context.lineWidth = 1;
+            context.strokeStyle =  "rgba(91, 192, 190, 0.15)";
+
+            points = calcWaypoints(x,y,x_new,y_new);
+            StartDrawLine();
+            // animate();
+            
+            // context.beginPath();
+            // context.moveTo(x*figScale+canvas.width/2,-y*figScale+canvas.height/yAxisPos);
+            // context.lineTo(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/yAxisPos);
+            // context.stroke();
+        }
+
+        this.x = x_new;
+        this.y = y_new;
+
+        i++;
+
+        // clearInterval(myTimer);
     }
 }
 
