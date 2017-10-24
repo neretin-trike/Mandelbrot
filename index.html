@@ -14,8 +14,8 @@
     <nav id="menu">
 		<ul>
 			<li><button id="goDraw" onclick="StartDrawMandelbrot()">Множество Мандельброта</button></li>
-			<li><button onclick="StartDrawLine()">Продолжить рисование</button></li>
-			<li><button onclick="StopDrawLine()">Остановить рисование</button></li>
+		<!-- 	<li><button onclick="StartDrawLine()">Продолжить рисование</button></li> -->
+			<li><button id="stateDraw" onclick="StopDrawLine()">Остановить рисование</button></li>
 			<li><button onclick="CanvasClear()">Очистить график</button></li>
 		</ul>
 		<ul>
@@ -30,6 +30,9 @@
 				 <label  class="custom-check" for="hordInput"></label>
 			</li>
 			<li>
+			Анимация<input type="checkbox" checked id="animInput">
+				 <label  class="custom-check" for="animInput"></label>
+			</li>
 			Цвета<input type="checkbox" id="colorInput">
 				 <label  class="custom-check" for="colorInput"></label>
 			</li>

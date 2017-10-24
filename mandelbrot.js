@@ -11,7 +11,8 @@ var alfa = 0.3,
     beta = 0.44083
     figScale = 700,
     pointSize = 2500,
-    hord = false,
+    hord = true,
+    anim = true,
     mainColors = false;
 
 var mainColor = ["Aqua","Black","Blue","Fuchsia ", 
@@ -101,60 +102,57 @@ function calcWaypoints(x0,y0,x1,y1){
 var canDraw = true;
 function animate(){
 
-    // if(draws){
-
-    //     try{
-    //         context.beginPath();
-    //         context.moveTo(points[t-1].x*figScale+canvas.width/2,-points[t-1].y*figScale+canvas.height/yAxisPos);
-    //         context.lineTo(points[t].x*figScale+canvas.width/2,-points[t].y*figScale+canvas.height/yAxisPos);
-    //         context.stroke();
-    //         t++;
-
-    //         StopDrawMandelbrot();
-    //     }
-    //     catch(err){
-    //         console.log("ошибочка");
-    //     }
-
-    //     if (t==points.length-1){
-    //         points=[];
-    //         t = 1;
-    //         myTimer2 = null;
-            
-    //         StartDrawMandelbrot();
-    //     }
-    // }
-
     if(draws){
-        if(canDraw)
-        {
+        if (anim){
             try{
                 context.beginPath();
-                context.moveTo(points[0].x*figScale+canvas.width/2,-points[0].y*figScale+canvas.height/yAxisPos);
-                context.lineTo(points[points.length-1].x*figScale+canvas.width/2,-points[points.length-1].y*figScale+canvas.height/yAxisPos);
+                context.moveTo(points[t-1].x*figScale+canvas.width/2,-points[t-1].y*figScale+canvas.height/yAxisPos);
+                context.lineTo(points[t].x*figScale+canvas.width/2,-points[t].y*figScale+canvas.height/yAxisPos);
                 context.stroke();
-                // draws = false;
+                t++;
+
+                StopDrawMandelbrot();
             }
             catch(err){
                 console.log("ошибочка");
             }
 
-            canDraw = false;
+            if (t==points.length-1){
+                points=[];
+                t = 1;
+                myTimer2 = null;
+                
+                StartDrawMandelbrot();
+            }
+        }
+        else{
+            if(canDraw)
+            {
+                try{
+                    context.beginPath();
+                    context.moveTo(points[0].x*figScale+canvas.width/2,-points[0].y*figScale+canvas.height/yAxisPos);
+                    context.lineTo(points[points.length-1].x*figScale+canvas.width/2,-points[points.length-1].y*figScale+canvas.height/yAxisPos);
+                    context.stroke();
+                }
+                catch(err){
+                    console.log("ошибочка");
+                }
+
+                canDraw = false;
+            }
         }
     }
+
+
 }
 
 function StartDrawLine(){
-    myTimer2 = setInterval(function (){animate()},5);
-    // StartDrawMandelbrot();
     draws = true;
 }
 
 function StopDrawLine(){
-    draws = false;
-    // StopDrawMandelbrot();
-    // goDraw.disabled = draws;
-    // clearInterval(myTimer2);
+    draws = !draws;
+    stateDraw.innerHTML = draws? "Остановить рисование":"Продолжить рисование";
 }
 
 function DrawMandelbrotSet(x,y,alfa,beta,figScale){
@@ -167,6 +165,7 @@ function DrawMandelbrotSet(x,y,alfa,beta,figScale){
             figScale = scaleInput.value;
             pointSize = pointSizeInput.value;
             hord = hordInput.checked;
+            anim = animInput.checked;
             mainColors = colorInput.checked;
 
             x_new = x*x-y*y+alfa;
@@ -194,9 +193,8 @@ function DrawMandelbrotSet(x,y,alfa,beta,figScale){
                 context.strokeStyle =  "rgba(91, 192, 190, 0.15)";
 
                 points = calcWaypoints(x,y,x_new,y_new);
-                StartDrawLine();
-                //animate();
-                
+                myTimer2 = setInterval(function (){animate()},5);
+
                 // context.beginPath();
                 // context.moveTo(x*figScale+canvas.width/2,-y*figScale+canvas.height/yAxisPos);
                 // context.lineTo(x_new*figScale+canvas.width/2,-y_new*figScale+canvas.height/yAxisPos);
