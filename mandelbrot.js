@@ -99,9 +99,12 @@ function calcWaypoints(x0,y0,x1,y1){
     return(waypoints);
 }
 
+function btnVisible(){
+    animBtn.style.opacity = hordInput.checked? "1":"0";
+}
+
 var canDraw = true;
 function animate(){
-
     if(draws){
         if (anim){
             try{
@@ -142,15 +145,9 @@ function animate(){
             }
         }
     }
-
-
 }
 
-function StartDrawLine(){
-    draws = true;
-}
-
-function StopDrawLine(){
+function StartStopDrawLine(){
     draws = !draws;
     stateDraw.innerHTML = draws? "Остановить рисование":"Продолжить рисование";
 }
@@ -206,14 +203,11 @@ function DrawMandelbrotSet(x,y,alfa,beta,figScale){
 
             i++;
 
-            // clearInterval(myTimer);
         }
     }
 
     canDraw = true;
 }
-
-
 
 
 

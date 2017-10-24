@@ -14,8 +14,7 @@
     <nav id="menu">
 		<ul>
 			<li><button id="goDraw" onclick="StartDrawMandelbrot()">Множество Мандельброта</button></li>
-		<!-- 	<li><button onclick="StartDrawLine()">Продолжить рисование</button></li> -->
-			<li><button id="stateDraw" onclick="StopDrawLine()">Остановить рисование</button></li>
+			<li><button id="stateDraw" onclick="StartStopDrawLine()">Остановить рисование</button></li>
 			<li><button onclick="CanvasClear()">Очистить график</button></li>
 		</ul>
 		<ul>
@@ -25,14 +24,15 @@
 		</ul>
 		<ul>
 			<li>Количество точек<input type="text" value="700" id="pointSizeInput"></li>
-			<li>
-			Хорды<input type="checkbox" checked id="hordInput">
-				 <label  class="custom-check" for="hordInput"></label>
+			<li class="one-line"> 
+			Хорды<input onclick="btnVisible()" type="checkbox" checked id="hordInput">
+				 <label class="custom-check" for="hordInput"></label>
 			</li>
-			<li>
+			<li class="one-line" id="animBtn">
 			Анимация<input type="checkbox" checked id="animInput">
 				 <label  class="custom-check" for="animInput"></label>
 			</li>
+			<li>
 			Цвета<input type="checkbox" id="colorInput">
 				 <label  class="custom-check" for="colorInput"></label>
 			</li>

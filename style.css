@@ -39,6 +39,11 @@ ul li{
 	margin-bottom: 7px;
 }
 
+ul .one-line{
+	width: 75px;
+	display: inline-block;
+}
+
 button{
 	width: 150px;
 	height: 55px;
@@ -97,12 +102,13 @@ input[type="checkbox"]:checked + label {
 }
 
 
-.hint{
+ul .hint{
+	margin-top: 12px;
 	color: rgba(255,255,255,1);
 	opacity: 0.25;
 }
 
-.hint kbr{
+ul .hint kbr{
 	color: rgba(255,255,255,1);
 	display: inline-block;
 	border: 2px solid #E91E63;
