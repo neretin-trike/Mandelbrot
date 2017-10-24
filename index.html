@@ -14,7 +14,8 @@
     <nav id="menu">
 		<ul>
 			<li><button id="goDraw" onclick="StartDrawMandelbrot()">Множество Мандельброта</button></li>
-			<li><button onclick="StopDrawMandelbrot()">Остановить рисование</button></li>
+			<li><button onclick="StartDrawLine()">Продолжить рисование</button></li>
+			<li><button onclick="StopDrawLine()">Остановить рисование</button></li>
 			<li><button onclick="CanvasClear()">Очистить график</button></li>
 		</ul>
 		<ul>
@@ -23,7 +24,7 @@
 			<li>Масштаб<input type="text" value="700" id="scaleInput"></li>
 		</ul>
 		<ul>
-			<li>Количество точек<input type="text" value="2" id="pointSizeInput"></li>
+			<li>Количество точек<input type="text" value="700" id="pointSizeInput"></li>
 			<li>
 			Хорды<input type="checkbox" checked id="hordInput">
 				 <label  class="custom-check" for="hordInput"></label>
